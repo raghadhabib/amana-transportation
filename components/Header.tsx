@@ -1,24 +1,29 @@
-// 💡 FIX: Import the correct icon name (AiOutlineMenu) from react-icons/ai
-import { AiOutlineMenu } from "react-icons/ai"; 
+import { AiOutlineMenu } from "react-icons/ai";
+import ThemeToggle from "./ThemeToggle"; // 🚨 NEW: Import the toggle component
 
 export default function Header() {
   return (
     <header className="w-full">
-      {/* 1. Dark Navbar Section (AM Inc. Logo & Menu) */}
+      {/* 1. Dark Navbar Section (Logo, Menu & Theme Toggle) */}
       <nav className="flex justify-between items-center h-14 bg-gray-900 text-white px-4 sm:px-8">
         {/* Logo */}
         <div className="text-xl font-bold tracking-widest">
           Amana Logo
         </div>
         
-        {/* Hamburger Menu (Placeholder) */}
-        <button 
-          className="p-2 rounded hover:bg-gray-700 transition-colors"
-          aria-label="Menu"
-        >
-          {/* Use the correctly imported icon */}
-          <AiOutlineMenu className="w-6 h-6" /> 
-        </button>
+        {/* 🚨 NEW: Container for Menu and Toggle */}
+        <div className="flex items-center space-x-4"> 
+          {/* Theme Toggle */}
+          <ThemeToggle /> 
+
+          {/* Hamburger Menu (Placeholder) */}
+          <button 
+            className="p-2 rounded hover:bg-gray-700 transition-colors"
+            aria-label="Menu"
+          >
+            <AiOutlineMenu className="w-6 h-6" /> 
+          </button>
+        </div>
       </nav>
 
       {/* 2. Green Title Banner Section */}

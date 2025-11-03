@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// 🚨 ADD THIS LINE: Import Leaflet's CSS for map rendering
-import 'leaflet/dist/leaflet.css'; 
+import 'leaflet/dist/leaflet.css';
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Amana Transportation - Live Tracker", // 💡 Updated title
-  description: "Live bus tracking and schedule for Amana Transportation.", // 💡 Updated description
+  title: "Amana Transportation - Live Tracker",
+  description: "Live bus tracking and schedule for Amana Transportation.",
 };
 
 export default function RootLayout({
@@ -25,13 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // 💡 RESTORE THE HTML TAG
-    <html lang="en">
-      {/* 💡 ENSURE <body> IS THE IMMEDIATE CHILD TO AVOID WHITESPACE */}
+    <html lang="en"> 
       <body
+        // 💡 Ensure no conflicting background/color classes are here, 
+        // rely solely on the CSS variables.
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

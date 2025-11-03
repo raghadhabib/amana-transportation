@@ -1,11 +1,9 @@
 "use client";
 
-// import { AmanaData } from '@/types/amana'; // No longer needed
 import BusSelector from './BusSelector';
 import { useBusContext } from '@/context/BusContext';
 import ScheduleTable from './ScheduleTable';
 
-// 💡 Removed initialData/initialRouteId props and BusProvider wrapper
 export default function BusScheduleSection() {
     const { selectedRoute } = useBusContext();
 
@@ -15,7 +13,8 @@ export default function BusScheduleSection() {
                 <div className="bg-yellow-200 text-black p-3 text-center rounded-lg shadow-sm">
                     <h2 className="text-xl font-semibold">Bus Schedule</h2>
                 </div>
-                <div className="p-4 bg-white dark:bg-zinc-900 rounded-lg text-center shadow-lg">
+                {/* 🚨 FIX: Remove hardcoded 'dark:bg-zinc-900' and rely on body background */}
+                <div className="p-4 bg-white rounded-lg text-center shadow-lg"> 
                     <BusSelector />
                     <p className='mt-4 text-gray-600 dark:text-gray-400'>Select a bus route to view the schedule.</p>
                 </div>

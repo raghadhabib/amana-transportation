@@ -7,15 +7,18 @@ export default function BusSelector() {
 
   const busRoutes = data.bus_lines;
 
+  // 🚨 FIX 1: Ensure the container is explicitly white in light mode 
+  // and dark in dark mode to match the theme background.
   return (
     <div className="grid grid-cols-4 gap-2 p-2 rounded-lg bg-white dark:bg-black shadow-inner">
       {busRoutes.map((route) => {
         const isSelected = route.id === selectedRouteId;
         
-        // Use Tailwind classes for styling based on the selected state
         const buttonClass = isSelected
           ? "bg-green-600 text-white font-bold shadow-md hover:bg-green-700" // Selected (Green)
-          : "bg-gray-300 dark:bg-zinc-700 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-zinc-600"; // Unselected (Gray)
+          // 🚨 FIX 2: Ensure the light mode background is a clear light color.
+          // Keep dark classes as Tailwind's 'class' mode will handle the switch.
+          : "bg-gray-300 text-gray-800 hover:bg-gray-400 dark:bg-zinc-700 dark:text-gray-200 dark:hover:bg-zinc-600"; // Unselected 
 
         return (
           <button
@@ -25,7 +28,6 @@ export default function BusSelector() {
             col-span-2 sm:col-span-1`}
             aria-pressed={isSelected}
           >
-            {/* Displaying a shorter identifier for mobile */}
             <span className="hidden sm:inline">Bus {route.route_number}</span>
             <span className="sm:hidden">B{route.id}</span> 
           </button>
