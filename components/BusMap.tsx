@@ -45,12 +45,13 @@ export default function BusMap() {
     const busLocation = selectedRoute?.current_location;
 
     // 🚨 CHANGE 1: Swapping to a clean, light-themed tile layer URL
-    const LightTileLayer = () => {
-      const url = "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png";
-      const attribution = '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+   // FIX: Switching to the standard OpenStreetMap tile layer which does not require an API key
+    const LightTileLayer = () => {
+      const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-      return <TileLayer url={url} attribution={attribution} />;
-    };
+      return <TileLayer url={url} attribution={attribution} />;
+    };
 
     return (
       <MapContainer 
